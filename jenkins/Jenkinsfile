@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/your-repo/flask-app.git'
+                git 'https://github.com/nafrinmeir/projapplied.git'
             }
         }
         stage('Build') {
