@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/your-repo/flask-app.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'docker build -t flask-app:latest .'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'python -m unittest discover tests'
+            }
+        }
+        stage('Push Image') {
+            steps {
+                sh 'docker tag flask-app:latest your-dockerhub/flask-app:latest'
+                sh 'docker push your-dockerhub/flask-app:latest'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'ansible-playbook ansible/playbook.yaml'
+            }
+        }
+    }
+}
