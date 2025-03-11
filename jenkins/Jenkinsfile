@@ -1,10 +1,7 @@
 pipeline {
     agent any
     
-    environment {
-    PATH = "C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python313;${env.PATH}"    
-    }
-    
+
     environment {
         //DOCKER_COMPOSE_FILE = 'docker-compose.yml'
         DOCKER_IMAGE_PREFIX = 'nafrin/python'
